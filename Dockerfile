@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache build-base openssl-dev pcre-dev zlib-dev && \
+RUN apk add --no-cache build-base gettext openssl-dev pcre-dev zlib-dev && \
     cd tmp && \
     wget -O nginx.tar.gz https://github.com/nginx/nginx/archive/refs/heads/master.tar.gz && \
     tar zxf nginx.tar.gz && \
@@ -24,8 +24,12 @@ RUN apk add --no-cache build-base openssl-dev pcre-dev zlib-dev && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf.template /etc/nginx/templates/nginx.conf.template
 
 EXPOSE 1935
 
-CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]
+CMD ["sh", \
+    "-c", \
+    "envsubst '$AUTH' < /etc/nginx/templates/nginx.conf.template > /etc/nginx/nginx.conf && \
+    /usr/local/nginx/sbin/nginx -g 'daemon off;'" \
+]

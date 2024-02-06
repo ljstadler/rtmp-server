@@ -11,27 +11,19 @@
 ## Usage
 
 -   Clone this repository
--   Set your desired authentication key in [nginx.conf](/nginx.conf#L8,30)
 -   ```
     docker build -t rtmp-server:latest .
     ```
 -   ```
-    docker run -d -p 1935:1935 --name rtmp-server rtmp-server:latest
+    docker run -d -e AUTH="{AUTH}" --name rtmp-server -p 1935:1935 rtmp-server:latest
     ```
+-   Setting the AUTH variable is optional
 -   In your streaming application of choice, set the server URL to:
     ```
     rtmp://{HOST}:{PORT}/stream?auth={AUTH}
-    ```
-    For example, with the defaults it would be:
-    ```
-    rtmp://localhost:1935/stream?auth=123
     ```
 -   Setting a Stream Key is not required, but if you'll be running multiple streams, use a unique Stream Key for each
 -   In your viewing application of choice, set the stream URL to:
     ```
     rtmp://{HOST}:{PORT}/stream/{KEY}?auth={AUTH}
-    ```
-    Or, if no Stream Key is set:
-    ```
-    rtmp://{HOST}:{PORT}/stream?auth={AUTH}
     ```
