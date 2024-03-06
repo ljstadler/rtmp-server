@@ -10,12 +10,8 @@
 
 ## Usage
 
--   Clone this repository
 -   ```
-    docker build -t rtmp-server:latest .
-    ```
--   ```
-    docker run -d -e AUTH="{AUTH}" --name rtmp-server -p 1935:1935 rtmp-server:latest
+    docker run -d -e AUTH="{AUTH}" --name rtmp-server -p 1935:1935 ljstadler/rtmp-server:latest
     ```
 -   Setting the AUTH variable is optional
 -   In your streaming application of choice, set the server URL to:
