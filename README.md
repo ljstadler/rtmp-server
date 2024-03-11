@@ -2,7 +2,7 @@
 
 # rtmp-server
 
-## RTMP streaming server based on [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)
+## RTMP streaming server based on [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module)
 
 </div>
 
@@ -16,8 +16,8 @@
     ```
     rtmp://{HOST}:{PORT}/stream?auth={AUTH}
     ```
--   Setting a Stream Key is not required, but if you'll be running multiple streams, use a unique Stream Key for each
--   In your viewing application of choice, set the stream URL to:
+-   Setting a Stream Key is required
+-   In your viewing application of choice, use this URL:
     ```
     rtmp://{HOST}:{PORT}/stream?auth={AUTH}/{KEY}
     ```

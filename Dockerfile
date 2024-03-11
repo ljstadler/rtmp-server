@@ -1,25 +1,22 @@
 FROM alpine:latest
 
-RUN apk add --no-cache build-base gettext openssl-dev pcre-dev zlib-dev && \
+RUN apk add --no-cache build-base envsubst git openssl-dev pcre2-dev zlib-dev && \
     cd tmp && \
-    wget -O nginx.tar.gz https://github.com/nginx/nginx/archive/refs/heads/master.tar.gz && \
-    tar zxf nginx.tar.gz && \
-    rm nginx.tar.gz && \
-    wget -O nginx-rtmp-module.tar.gz https://github.com/arut/nginx-rtmp-module/archive/refs/heads/master.tar.gz && \
-    tar zxf nginx-rtmp-module.tar.gz && \
-    rm nginx-rtmp-module.tar.gz && \
-    cd nginx-master && \
+    git clone https://github.com/nginx/nginx && \
+    git clone https://github.com/winshining/nginx-http-flv-module && \
+    cd nginx && \
     ./auto/configure \
+    --with-threads \
+    --with-http_ssl_module \
+    --with-http_auth_request_module \
     --conf-path=/etc/nginx/nginx.conf \
     --http-log-path=/var/log/nginx/access.log \
     --error-log-path=/var/log/nginx/error.log \
-    --with-threads \
-    --with-http_ssl_module \
-    --add-module=/tmp/nginx-rtmp-module-master --with-debug && \
+    --add-module=/tmp/nginx-http-flv-module && \
     make && \
     make install && \
     rm -rf /tmp/* && \
-    apk del build-base && \
+    apk del build-base git && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
