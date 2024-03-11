@@ -8,7 +8,6 @@ RUN apk add --no-cache build-base gettext openssl-dev pcre-dev zlib-dev && \
     wget -O nginx-rtmp-module.tar.gz https://github.com/arut/nginx-rtmp-module/archive/refs/heads/master.tar.gz && \
     tar zxf nginx-rtmp-module.tar.gz && \
     rm nginx-rtmp-module.tar.gz && \
-    ls && \
     cd nginx-master && \
     ./auto/configure \
     --conf-path=/etc/nginx/nginx.conf \

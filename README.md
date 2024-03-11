@@ -2,9 +2,7 @@
 
 # rtmp-server
 
-## Alpine and Nginx based RTMP streaming server
-
-![Alpine](https://img.shields.io/badge/Alpine-%230D597F.svg?style=for-the-badge&logo=alpine-linux&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
+## RTMP streaming server based on [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module)
 
 </div>
 
