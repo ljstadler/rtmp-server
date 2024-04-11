@@ -9,7 +9,7 @@
 ## Usage
 
 -   ```
-    docker run -d -e AUTH="{AUTH}" --name rtmp-server -p 1935:1935 ljstadler/rtmp-server:latest
+    docker run -d -e AUTH="{AUTH}" --name rtmp-server -p 1935:1935 ghcr.io/ljstadler/rtmp-server
     ```
 -   Setting the AUTH variable is optional
 -   In your broadcasting application of choice, set the server URL to:
