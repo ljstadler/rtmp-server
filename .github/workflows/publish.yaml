@@ -47,4 +47,4 @@ jobs:
               with:
                   package-name: ${{ env.REPOSITORY_NAME }}
                   package-type: container
-                  delete-only-untagged-versions: true
+                  min-versions-to-keep: 3
