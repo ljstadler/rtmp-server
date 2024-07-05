@@ -30,7 +30,7 @@ jobs:
                   username: ${{ github.repository_owner }}
                   password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Build and push
+            - name: Build and Push
               uses: docker/build-push-action@v5
               with:
                   context: .
@@ -38,3 +38,13 @@ jobs:
                   platforms: linux/amd64,linux/arm64
                   push: true
                   tags: ghcr.io/${{ github.repository }}:latest
+
+            - name: Get Repository Name
+              run: echo "REPOSITORY_NAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
+
+            - name: Delete Package Versions
+              uses: actions/delete-package-versions@v5.0.0
+              with:
+                  package-name: ${{ env.REPOSITORY_NAME }}
+                  package-type: container
+                  min-versions-to-keep: 3
