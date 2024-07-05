@@ -14,6 +14,16 @@ jobs:
             packages: write
 
         steps:
+            - name: Get Repository Name
+              run: echo "REPOSITORY_NAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
+
+            - name: Delete Package Versions
+              uses: actions/delete-package-versions@v5.0.0
+              with:
+                  package-name: ${{ env.REPOSITORY_NAME }}
+                  package-type: container
+                  min-versions-to-keep: 0
+        
             - name: Checkout
               uses: actions/checkout@v4
 
@@ -38,13 +48,3 @@ jobs:
                   platforms: linux/amd64,linux/arm64
                   push: true
                   tags: ghcr.io/${{ github.repository }}:latest
-
-            - name: Get Repository Name
-              run: echo "REPOSITORY_NAME=$(basename ${{ github.repository }})" >> $GITHUB_ENV
-
-            - name: Delete Package Versions
-              uses: actions/delete-package-versions@v5.0.0
-              with:
-                  package-name: ${{ env.REPOSITORY_NAME }}
-                  package-type: container
-                  min-versions-to-keep: 4
