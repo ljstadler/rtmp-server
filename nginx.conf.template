@@ -1,9 +1,6 @@
-worker_processes auto;
-rtmp_auto_push on;
 events {}
 http {
     server {
-        listen 1934;
         location / {
             if ($arg_auth = "${AUTH}") {
                 return 200;
@@ -16,7 +13,7 @@ rtmp {
     server {
         listen 1935;
         notify_method get;
-        on_connect http://localhost:1934/;
+        on_connect http://127.0.0.1/;
         application stream {
             live on;
             record off;
