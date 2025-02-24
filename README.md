@@ -1,15 +1,15 @@
 <div align=center>
 
-# rtmp-server
+# nginx-rtmp-docker
 
-## RTMP streaming server based on [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module)
+## Docker image for NGINX compiled with [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module)
 
 </div>
 
 ## Usage
 
 -   ```
-    docker run -d -e AUTH="{AUTH}" --name rtmp-server -p 1935:1935 ghcr.io/ljstadler/rtmp-server
+    docker run -d -e AUTH="{AUTH}" --name nginx-rtmp -p 1935:1935 ghcr.io/ljstadler/nginx-rtmp-docker
     ```
 -   Setting the AUTH variable is optional
 -   In your broadcasting application of choice, set the server URL to:
